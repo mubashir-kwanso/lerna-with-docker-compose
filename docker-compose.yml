@@ -1,0 +1,62 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: packages/api/Dockerfile
+      target: development
+    profiles:
+      - development
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./packages/api/.env
+    volumes:
+      - ./:/app
+      - node_modules_api_development:/app/node_modules
+      - node_modules_api_internal_development:/app/packages/api/node_modules
+
+  client:
+    build:
+      context: .
+      dockerfile: packages/client/Dockerfile
+      target: development
+    profiles:
+      - development
+    ports:
+      - "3001:5173"
+    env_file:
+      - ./packages/client/.env
+    volumes:
+      - ./:/app
+      - node_modules_client_development:/app/node_modules
+      - node_modules_client_internal_development:/app/packages/client/node_modules
+
+  api_production:
+    build:
+      context: .
+      dockerfile: packages/api/Dockerfile
+      target: production
+    profiles:
+      - production
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./packages/api/.env
+
+  client_production:
+    build:
+      context: .
+      dockerfile: packages/client/Dockerfile
+      target: production
+    profiles:
+      - production
+    ports:
+      - "3001:4173"
+    env_file:
+      - ./packages/client/.env
+
+volumes:
+  node_modules_api_development:
+  node_modules_api_internal_development:
+  node_modules_client_development:
+  node_modules_client_internal_development:
