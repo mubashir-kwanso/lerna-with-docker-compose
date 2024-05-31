@@ -7,7 +7,9 @@ This is a monorepo project that contains a Nest.js API and a Vite React client. 
 Before you begin, ensure you have following installed on your machine:
 
 👉 Node.js (LTS version)
+
 👉 NPM
+
 👉 Docker Desktop (including Docker Compose)
 
 ## Getting Started
@@ -57,8 +59,11 @@ docker compose --profile production down
 To install packages, use the following flow:
 
 👉 Open Docker Desktop
+
 👉 Open the container in which you want to install packages
+
 👉 Open the Exec Console
+
 👉 Run the following command:
 
 ```bash
@@ -74,6 +79,7 @@ Following the above steps will install the packages in the `node_modules` direct
 You can check the Ports for every service in the `docker-compose.yml` file.
 
 👉 API: http://localhost:3000
+
 👉 Client: http://localhost:3001
 
 ## Directory Structure
