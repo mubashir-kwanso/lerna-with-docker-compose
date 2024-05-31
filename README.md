@@ -133,6 +133,7 @@ The project has the following directory structure:
 👉 Environment Variables in `development`:
 
 - The _environment variables_ are loaded from `.env` files. They are avaiable in containers because we are mounting whole monorepo into the containers during `development`.
+- After adding, updating, deleting an environment variable, we need to restart the specific service using `docker compose --profile development restart <service-name>` in order for changes to take effect.
 
 👉 Environment Variables in `production`:
 
