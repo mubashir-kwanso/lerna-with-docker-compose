@@ -6,7 +6,7 @@ WORKDIR /app
 COPY ./package*.json ./
 COPY ./packages/api/package.json ./packages/api/package.json
 
-RUN npm ci
+RUN npm install
 
 COPY ./lerna.json ./lerna.json
 COPY ./packages/api ./packages/api
