@@ -1,9 +1,23 @@
 services:
+  setup_development:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    profiles:
+      - development
+    # For development, we don't use "npm ci" because it removes the "node_modules" folder and re-installs all dependencies which makes the startup time longer.
+    command: ["npm", "install"]
+    volumes:
+      - ./:/app
   api:
     build:
       context: .
       dockerfile: packages/api/Dockerfile
       target: development
+    depends_on:
+      setup_development:
+        condition: service_completed_successfully
     profiles:
       - development
     ports:
@@ -18,6 +32,9 @@ services:
       context: .
       dockerfile: packages/client/Dockerfile
       target: development
+    depends_on:
+      setup_development:
+        condition: service_completed_successfully
     profiles:
       - development
     ports:
