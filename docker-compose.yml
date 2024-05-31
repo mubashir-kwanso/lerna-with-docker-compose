@@ -22,8 +22,6 @@ services:
       - development
     ports:
       - "3000:3000"
-    env_file:
-      - ./packages/api/.env
     working_dir: /app/packages/api
     volumes:
       - ./:/app
@@ -39,8 +37,6 @@ services:
       - development
     ports:
       - "3001:5173"
-    env_file:
-      - ./packages/client/.env
     working_dir: /app/packages/client
     volumes:
       - ./:/app
