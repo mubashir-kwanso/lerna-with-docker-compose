@@ -110,6 +110,23 @@ The project has the following directory structure:
 └── lerna.json
 ```
 
+## Useful Information
+
+👉 There are 2 profiles in `docker-compose.yml`: `development` and `production`.
+
+👉 The `Dockerfile` in the root directory is used for `setup_development` service which is used to install packages in the monorepo before starting any other service during `development`.
+
+👉 The `Dockerfile` in the `packages/api` and `packages/client` directories are used for building the images for each service. These `Dockerfile` use _target_ for building `development` and `production` images.
+
+👉 Environment Variables in `development`:
+
+- The _environment variables_ are loaded from `.env` files. They are avaiable in containers because we are mounting whole monorepo into the containers during `development`.
+
+👉 Environment Variables in `production`:
+
+- The _environment variables_ for `packages/client` service are defined in `packages/client/Dockerfile` because they are needed at the build time.
+- The _environment variables_ for `packages/api` service are passed as `env_file` from `docker-compose.yml` because they are needed at the runtime.
+
 ## Author
 
 👉 [Mubashir Hassan](https://mhm13.dev)
