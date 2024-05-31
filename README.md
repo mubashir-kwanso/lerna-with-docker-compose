@@ -86,7 +86,7 @@ The project has the following directory structure:
 ├── package.json
 ├── package-lock.json
 ├── README.md
-├── node_modules (Root node_modules)
+├── node_modules (root node_modules)
 ├── packages
 │   ├── api
 │   |   ├── ...

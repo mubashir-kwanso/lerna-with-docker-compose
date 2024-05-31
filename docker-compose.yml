@@ -6,7 +6,7 @@ services:
       target: development
     profiles:
       - development
-    # For development, we don't use "npm ci" because it removes the "node_modules" folder and re-installs all dependencies which makes the startup time longer.
+    # For development, we don't use "npm ci" because it removes the "node_modules" directory and re-installs all dependencies which makes the startup time longer.
     command: ["npm", "install"]
     volumes:
       - ./:/app
