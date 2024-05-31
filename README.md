@@ -37,6 +37,12 @@ docker compose --profile development up -d
 # Stop Development
 docker compose --profile development down
 
+# Start / Stop / Restart All Services
+docker compose --profile development <start|stop|restart>
+
+# Start / Stop / Restart Specific Service
+docker compose --profile development <start|stop|restart> <service-name>
+
 # Production
 docker compose --profile production up -d
 
