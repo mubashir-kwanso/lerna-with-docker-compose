@@ -1,5 +1,5 @@
 {
-  "name": "learn-lerna",
+  "name": "lerna-with-docker-compose",
   "private": true,
   "workspaces": [
     "packages/*"
