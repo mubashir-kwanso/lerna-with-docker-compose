@@ -61,5 +61,3 @@ services:
       - production
     ports:
       - "3001:4173"
-    env_file:
-      - ./packages/client/.env

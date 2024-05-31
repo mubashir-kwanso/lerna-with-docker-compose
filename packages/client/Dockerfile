@@ -32,6 +32,10 @@ COPY --chown=node:node ./packages/client ./packages/client
 
 EXPOSE 4173
 
+ENV \
+VITE_PROJECT_NAME="React.js Vite App" \
+VITE_API_URL="http://localhost:3000"
+
 RUN npx lerna run build --scope client
 
 CMD ["npx", "lerna", "run", "start", "--scope", "client"]
