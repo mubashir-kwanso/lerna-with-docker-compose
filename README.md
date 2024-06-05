@@ -126,7 +126,7 @@ The project has the following directory structure:
 
 👉 There are 2 profiles in `docker-compose.yml`: `development` and `production`.
 
-👉 The `Dockerfile.dev` in the root directory has a `development` stage which is used to create `setup-development` service which esnures installation of packages in the monorepo before starting any other service.
+👉 The `Dockerfile.dev` in the root directory is used for `development` and it has a `development` stage which is used to create `setup-development` service which esnures installation of packages in the monorepo before starting any other service. These installed packages are then available in host machine as well as in the containers.
 
 👉 The `Dockerfile` in the `packages/api` and `packages/client` directories are used for building `production` images for each service.
 
