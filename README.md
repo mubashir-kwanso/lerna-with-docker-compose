@@ -88,7 +88,7 @@ The project has the following directory structure:
 
 ```
 ├── docker-compose.yml
-├── Dockerfile (for development)
+├── Dockerfile.dev (for development)
 ├── package.json
 ├── package-lock.json
 ├── README.md
@@ -126,9 +126,9 @@ The project has the following directory structure:
 
 👉 There are 2 profiles in `docker-compose.yml`: `development` and `production`.
 
-👉 The `Dockerfile` in the root directory is used for `setup_development` service which is used to install packages in the monorepo before starting any other service during `development`.
+👉 The `Dockerfile.dev` in the root directory has a `development` stage which is used to create `setup-development` service which esnures installation of packages in the monorepo before starting any other service.
 
-👉 The `Dockerfile` in the `packages/api` and `packages/client` directories are used for building the images for each service. These `Dockerfile` use _target_ for building `development` and `production` images.
+👉 The `Dockerfile` in the `packages/api` and `packages/client` directories are used for building `production` images for each service.
 
 👉 Environment Variables in `development`:
 
