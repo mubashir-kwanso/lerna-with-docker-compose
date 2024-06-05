@@ -18,17 +18,15 @@ CMD ["npx", "lerna", "run", "start:dev", "--scope", "client"]
 # Production
 FROM node:20-alpine3.19 AS production
 
-USER node
-
 WORKDIR /app
 
-COPY --chown=node:node ./package*.json ./
-COPY --chown=node:node ./packages/client/package.json ./packages/client/package.json
+COPY ./package*.json ./
+COPY ./packages/client/package.json ./packages/client/package.json
 
 RUN npm ci
 
-COPY --chown=node:node ./lerna.json ./lerna.json
-COPY --chown=node:node ./packages/client ./packages/client
+COPY ./lerna.json ./lerna.json
+COPY ./packages/client ./packages/client
 
 EXPOSE 4173
 
