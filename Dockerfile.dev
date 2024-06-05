@@ -1,0 +1,38 @@
+# Development Setup
+FROM node:20-alpine3.19 AS development
+
+WORKDIR /app
+
+COPY ./package*.json ./lerna.json ./
+COPY ./packages/api/package.json ./packages/api/package.json
+COPY ./packages/client/package.json ./packages/client/package.json
+
+RUN npm install
+
+# Development API
+FROM node:20-alpine3.19 AS development-api
+
+WORKDIR /app
+
+COPY ./package*.json  ./lerna.json ./
+COPY --from=development /app/node_modules ./node_modules
+COPY --from=development /app/packages/api ./packages/api
+COPY ./packages/api ./packages/api
+
+EXPOSE 3000
+
+CMD ["npx", "lerna", "run", "start:dev", "--scope", "api"]
+
+# Development Frontend
+FROM node:20-alpine3.19 AS development-fe
+
+WORKDIR /app
+
+COPY ./package*.json ./lerna.json ./
+COPY --from=development /app/node_modules ./node_modules
+COPY --from=development /app/packages/client ./packages/client
+COPY ./packages/client ./packages/client
+
+EXPOSE 5173
+
+CMD ["npx", "lerna", "run", "start:dev", "--scope", "client"]

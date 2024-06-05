@@ -1,8 +1,9 @@
 services:
-  setup_development:
+  # Development Profile
+  setup-development:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       target: development
     profiles:
       - development
@@ -10,13 +11,14 @@ services:
     command: ["npm", "install"]
     volumes:
       - ./:/app
+
   api:
     build:
       context: .
-      dockerfile: packages/api/Dockerfile
-      target: development
+      dockerfile: Dockerfile.dev
+      target: development-api
     depends_on:
-      setup_development:
+      setup-development:
         condition: service_completed_successfully
     profiles:
       - development
@@ -25,13 +27,14 @@ services:
     working_dir: /app/packages/api
     volumes:
       - ./:/app
+
   client:
     build:
       context: .
-      dockerfile: packages/client/Dockerfile
-      target: development
+      dockerfile: Dockerfile.dev
+      target: development-fe
     depends_on:
-      setup_development:
+      setup-development:
         condition: service_completed_successfully
     profiles:
       - development
@@ -41,6 +44,7 @@ services:
     volumes:
       - ./:/app
 
+  # Production Profile
   api_production:
     build:
       context: .
@@ -52,6 +56,7 @@ services:
       - "3000:3000"
     env_file:
       - ./packages/api/.env
+
   client_production:
     build:
       context: .

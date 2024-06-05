@@ -1,31 +1,13 @@
-# Development
-FROM node:20-alpine3.19 AS development
-
-WORKDIR /app
-
-COPY ./package*.json ./
-COPY ./packages/client/package.json ./packages/client/package.json
-
-RUN npm install
-
-COPY ./lerna.json ./lerna.json
-COPY ./packages/client ./packages/client
-
-EXPOSE 5173
-
-CMD ["npx", "lerna", "run", "start:dev", "--scope", "client"]
-
 # Production
 FROM node:20-alpine3.19 AS production
 
 WORKDIR /app
 
-COPY ./package*.json ./
+COPY ./package*.json ./lerna.json ./
 COPY ./packages/client/package.json ./packages/client/package.json
 
 RUN npm ci
 
-COPY ./lerna.json ./lerna.json
 COPY ./packages/client ./packages/client
 
 EXPOSE 4173
